@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.example.gebruiker.recyclerview.models.GOTCharacter;
 import com.example.gebruiker.recyclerview.recyclerview.MainAdapter;
+import com.example.gebruiker.recyclerview.recyclerview.MainAdapterTouchHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,10 @@ public class GOTListFragment extends Fragment {
         MainAdapter mAdapter = new MainAdapter(getCharacters(), getContext());
         mAdapter.setCardClickedListener((MainAdapter.CardClickedListener) getActivity());
         mRecyclerView.setAdapter(mAdapter);
+
+        ItemTouchHelper.Callback callback = new MainAdapterTouchHelper(mAdapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(mRecyclerView);
 
         return layout;
     }

@@ -69,6 +69,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         return mCharacters.size();
     }
 
+    public void remove(int position){
+        mCharacters.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public interface CardClickedListener{
         void cardClicked(GOTCharacter character);
     }
