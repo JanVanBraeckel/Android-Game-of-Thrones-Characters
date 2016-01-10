@@ -70,8 +70,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     }
 
     public void remove(int position){
-        mCharacters.remove(position);
-        notifyItemRemoved(position);
+        if(position > 0 && position < mCharacters.size()){
+            mCharacters.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 
     public interface CardClickedListener{
